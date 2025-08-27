@@ -166,20 +166,13 @@ export class NASPDecoder {
 		const command_name = ((object as NASPArray).data[0] as NASPBulkString)
 			.data;
 
-		let command_type: NASPCommandName;
-		const slice_at = 1;
+		const command_type_result = this.get_command_type(command_name);
 
-		switch (command_name.toLowerCase()) {
-			case 'ping': {
-				command_type = NASPCommandName.PING;
-				break;
-			}
-			default: {
-				return Result.err(
-					NASPDecodeError.command_name_unrecognized(command_name),
-				);
-			}
+		if (command_type_result.isErr()) {
+			return Result.err(command_type_result.unwrapErr());
 		}
+
+		const [command_type, slice_at] = command_type_result.unwrap();
 
 		return Result.ok(
 			new NASPCommand(
@@ -187,6 +180,30 @@ export class NASPDecoder {
 				(object as NASPArray).data.slice(slice_at),
 			),
 		);
+	}
+
+	private get_command_type(
+		command_name: string,
+	): Result<[NASPCommandName, number], NASPDecodeError> {
+		let command_type: NASPCommandName;
+		const slice_at = 1;
+		switch (command_name.toLowerCase()) {
+			case 'ping': {
+				command_type = NASPCommandName.PING;
+				break;
+			}
+			case 'echo': {
+				command_type = NASPCommandName.ECHO;
+				break;
+			}
+
+			default: {
+				return Result.err(
+					NASPDecodeError.command_name_unrecognized(command_name),
+				);
+			}
+		}
+		return Result.ok([command_type, slice_at]);
 	}
 
 	/**
