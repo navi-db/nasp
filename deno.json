@@ -1,0 +1,15 @@
+{
+	"name": "@navi/nasp",
+	"description": "The Navi Serialisation Protocol is a protocol for serialising and deserialising data in a way that is compatible with the communication between Navi servers and clients.",
+	"version": "0.1.0",
+	"exports": "./exports.ts",
+	"type": "module",
+	"tasks": {
+		"test": "deno test --reporter=dot"
+	},
+	"imports": {
+		"@sapphire/result": "npm:@sapphire/result@^2.7.2",
+		"@std/assert": "jsr:@std/assert@^1.0.14",
+		"@std/bytes": "jsr:@std/bytes@^1.0.6"
+	}
+}
