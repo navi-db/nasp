@@ -1,9 +1,7 @@
 {
-  "version": "5",
+  "version": "4",
   "specifiers": {
-    "jsr:@std/assert@*": "1.0.14",
     "jsr:@std/assert@^1.0.14": "1.0.14",
-    "jsr:@std/bytes@*": "1.0.6",
     "jsr:@std/bytes@^1.0.6": "1.0.6",
     "jsr:@std/internal@^1.0.10": "1.0.10",
     "npm:@sapphire/result@^2.7.2": "2.7.2"
