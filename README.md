@@ -1,5 +1,9 @@
 # NASP
 
+[![JSR Scope](https://jsr.io/badges/@navi)](https://jsr.io/@navi)
+[![JSR](https://jsr.io/badges/@navi/nasp)](https://jsr.io/@navi/nasp)
+[![JSR Score](https://jsr.io/badges/@navi/nasp/score)](https://jsr.io/@navi/nasp)
+
 **NASP** (or Navi Serialisation Protocol) is a TypeScript library for creating, encoding, and decoding NASP messages and objects. It provides strongly typed classes and enums to handle NASP requests, responses, and payloads, making it easier to work with NASP messages in TypeScript projects.
 
 ---
