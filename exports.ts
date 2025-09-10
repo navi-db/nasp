@@ -17,3 +17,5 @@ export * from './decode/class.ts';
 export * from './decode/errors.ts';
 
 export * from './encode/encoder.ts';
+
+export * from './constants.ts';
