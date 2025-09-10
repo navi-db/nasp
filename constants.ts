@@ -20,7 +20,9 @@ export const ARRAY_LENGTH_MAX = 512;
 export const CRLF = '\r\n';
 
 /** The terminator in raw bytes used in the Navi Serialisation Protocol */
-export const CRLF_BYTES = new TextEncoder().encode(CRLF);
+export const CRLF_BYTES: Uint8Array<ArrayBufferLike> = new TextEncoder().encode(
+	CRLF,
+);
 
 /** The first byte of an encoded simple string */
 export const SIMPLE_STRING_PREFIX = '+';
