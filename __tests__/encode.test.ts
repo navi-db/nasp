@@ -1,4 +1,4 @@
-import { assertEquals } from 'jsr:@std/assert';
+import { assertEquals } from '@std/assert';
 import { NASPEncoder } from '../encode/encoder.ts';
 import { NASPSimpleString } from '../objects/simpleString.ts';
 import { NASPSimpleError } from '../objects/simpleError.ts';

@@ -12,7 +12,7 @@ import { NASPSimpleError } from '../objects/simpleError.ts';
 import { NASPSimpleString } from '../objects/simpleString.ts';
 import { NASPTaggedString } from '../objects/taggedString.ts';
 import { NASPArray } from '../objects/array.ts';
-import { assertEquals, assertThrows } from 'jsr:@std/assert';
+import { assertEquals, assertThrows } from '@std/assert';
 import { NASPPayload, NASPRequest, NASPResponse } from '../objects/messages.ts';
 import { assert } from '@std/assert/assert';
 import { NASPPayloadKind } from '../objects/types.ts';
