@@ -56,6 +56,36 @@ export class NASPDecoder {
 	private current: number = 0;
 
 	/**
+	 * Parses a command name string into a {@link NASPCommandName} and the number of bytes to skip.
+	 *
+	 * @param command_name The command name to parse.
+	 * @returns A {@link Result} that indicates a success or an {@link NASPDecodeError}.
+	 */
+	public static get_command_type(
+		command_name: string,
+	): Result<[NASPCommandName, number], NASPDecodeError> {
+		let command_type: NASPCommandName;
+		const slice_at = 1;
+		switch (command_name.toLowerCase()) {
+			case 'ping': {
+				command_type = NASPCommandName.PING;
+				break;
+			}
+			case 'echo': {
+				command_type = NASPCommandName.ECHO;
+				break;
+			}
+
+			default: {
+				return Result.err(
+					NASPDecodeError.command_name_unrecognized(command_name),
+				);
+			}
+		}
+		return Result.ok([command_type, slice_at]);
+	}
+
+	/**
 	 * Creates a new instance of the {@link NASPDecoder} class.
 	 *
 	 * @param raw The raw binary data to decode.
@@ -166,7 +196,7 @@ export class NASPDecoder {
 		const command_name = ((object as NASPArray).data[0] as NASPBulkString)
 			.data;
 
-		const command_type_result = this.get_command_type(command_name);
+		const command_type_result = NASPDecoder.get_command_type(command_name);
 
 		if (command_type_result.isErr()) {
 			return Result.err(command_type_result.unwrapErr());
@@ -180,30 +210,6 @@ export class NASPDecoder {
 				(object as NASPArray).data.slice(slice_at),
 			),
 		);
-	}
-
-	private get_command_type(
-		command_name: string,
-	): Result<[NASPCommandName, number], NASPDecodeError> {
-		let command_type: NASPCommandName;
-		const slice_at = 1;
-		switch (command_name.toLowerCase()) {
-			case 'ping': {
-				command_type = NASPCommandName.PING;
-				break;
-			}
-			case 'echo': {
-				command_type = NASPCommandName.ECHO;
-				break;
-			}
-
-			default: {
-				return Result.err(
-					NASPDecodeError.command_name_unrecognized(command_name),
-				);
-			}
-		}
-		return Result.ok([command_type, slice_at]);
 	}
 
 	/**
