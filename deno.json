@@ -1,7 +1,7 @@
 {
 	"name": "@navi/nasp",
 	"description": "The Navi Serialisation Protocol is a protocol for serialising and deserialising data in a way that is compatible with the communication between Navi servers and clients.",
-	"version": "0.1.1",
+	"version": "0.2.0",
 	"exports": "./exports.ts",
 	"type": "module",
 	"tasks": {
